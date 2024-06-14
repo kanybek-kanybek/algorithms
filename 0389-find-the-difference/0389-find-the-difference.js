@@ -4,19 +4,17 @@
  * @return {character}
  */
 var findTheDifference = function(s, t) {
-    let charCount = new Array(26).fill(0);
+    let result = 0;
     
-    for (let char of s) {
-        charCount[char.charCodeAt(0) - 'a'.charCodeAt(0)]++;
+    for (let i = 0; i < s.length; i++) {
+        result ^= s.charCodeAt(i);
+    }
+    for (let i = 0; i < t.length; i++) {
+        result ^= t.charCodeAt(i);
     }
     
-    for (let char of t) {
-        charCount[char.charCodeAt(0) - 'a'.charCodeAt(0)]--;
-        if (charCount[char.charCodeAt(0) - 'a'.charCodeAt(0)] < 0) {
-            return char;
-        }
-    }
+    return String.fromCharCode(result);
 };
 
-console.log(findTheDifference("abcd", "abcde")); 
+console.log(findTheDifference("abcd", "abcde"));
 console.log(findTheDifference("", "y")); 
